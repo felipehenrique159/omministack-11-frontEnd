@@ -39,6 +39,10 @@
     margin-top: 8px;
 }
 
+.register-container form .input-group{
+    display: flex;
+}
+
 .register-container form .input-group input + input {
     margin-left: 8px;
 }
