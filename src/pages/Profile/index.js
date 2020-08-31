@@ -4,6 +4,8 @@ import {Link, useHistory} from 'react-router-dom'
 import {FiPower,FiTrash2} from 'react-icons/fi'
 import api from '../../services/api'
 import '../Profile/style.css'
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
 export default function Profile(){
 
@@ -22,7 +24,24 @@ export default function Profile(){
         }) 
     } , [ongId])
 
+    function deleteConfirm(id){
+        confirmAlert({
+            title: 'Excluir caso',
+            message: 'Tem certeza que quer fazer isso?',
+            buttons: [
+              {
+                label: 'Sim',
+                onClick: () => handleDeleteIncident(id)
+              },
+              {
+                label: 'Não'
+              }
+            ]
+          });
+    }
+
     async function handleDeleteIncident(id){
+       
         try {
            await api.delete(`incidents/${id}`,{
                headers:{
@@ -67,7 +86,7 @@ export default function Profile(){
                     <strong>VALOR:</strong>
                     <p>{Intl.NumberFormat('pt-BR', {style: 'currency',currency: 'BRL'}).format(incident.value)}</p>
 
-                    <button type="button" onClick={() => {handleDeleteIncident(incident.id)}}>
+                    <button type="button" onClick={() => {deleteConfirm(incident.id)}}>
                         <FiTrash2 size="20" color="#a8a8b3"/>
                     </button>
                 </li>

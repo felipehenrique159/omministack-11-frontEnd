@@ -41,17 +41,9 @@ export default function Register(){
         const res = await api.post('ongs',data)
         console.log(res)
         if(res.data !== null || res.data !== undefined){     
-            // alert(`Seu ID de acesso: ${res.data.id}`);
+            
             console.log(res.data);
-            // toast.info('ONG cadastrada com sucesso!', {
-            //     position: "top-right",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            // });
+          
             toast.info(`Anote seu ID de acesso: ${res.data}`, {
                 position: "top-right",
                 // autoClose: 5000,
