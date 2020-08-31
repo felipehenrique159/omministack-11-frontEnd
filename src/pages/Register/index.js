@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import logoIMG from '../../assets/logo.svg'
 import {Link , useHistory} from 'react-router-dom'
 import {FiArrowLeft} from 'react-icons/fi'
-import { toast,ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import api from '../../services/api'
 
@@ -40,7 +40,7 @@ export default function Register(){
        try {
         const res = await api.post('ongs',data)
         console.log(res)
-        if(res.data != null || res.data != undefined){     
+        if(res.data !== null || res.data !== undefined){     
             // alert(`Seu ID de acesso: ${res.data.id}`);
             console.log(res.data);
             // toast.info('ONG cadastrada com sucesso!', {

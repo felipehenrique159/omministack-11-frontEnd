@@ -30,7 +30,7 @@ export default function Profile(){
                }
            })
 
-           setincidents(incidents.filter((incident) => incident.id != id))
+           setincidents(incidents.filter((incident) => incident.id !== id))
 
         } catch (error) {
             alert('Erro ao deletar caso, tente novamente')
