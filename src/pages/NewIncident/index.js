@@ -1,10 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import logoIMG from '../../assets/logo.svg'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import {FiArrowLeft} from 'react-icons/fi'
 import './style.css';
+import api from '../../services/api'
 
 export default function NewIncident(){
+
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+    const [value, setValue] = useState('')
+    const history = useHistory()
+
+    const ongId = localStorage.getItem('ongId')
+
+   async function handleNewIncident(e){
+        e.preventDefault();
+        const data = {
+            title,
+            description,
+            value
+        }
+        console.log(data);
+        
+        try {
+          
+            await api.post('incidents',data, {
+                headers:{
+                    Authorization: ongId
+                }
+            })
+
+            console.log('Cadastrado com sucesso');
+            history.push('/profile')
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return(
     <div className="new-incident-container">
         <div className="content">
@@ -18,15 +52,34 @@ export default function NewIncident(){
                    Voltar para Home
                 </Link>
             </section>
-            <form>
+             <form>
             
-            <input placeholder="Título do caso" type="text"/>
-                
+               <input
+                placeholder="Título do caso" 
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                />
                
-                <textarea placeholder="Descrição" cols="30" rows="10"></textarea>
+                <textarea 
+                placeholder="Descrição" 
+                cols="30" 
+                rows="10"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                >
+
+                </textarea>
+               
+                <input 
+                placeholder="Valor em reais"
+                type="text"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                />
               
-                <input placeholder="Valor em reais" type="text"/>
-                <button className="button" type="submit" placeholder="Cadastrar">
+              
+                <button className="button" type="submit" placeholder="Cadastrar" onClick={handleNewIncident}>
                     Cadastrar
                 </button>
             </form>
