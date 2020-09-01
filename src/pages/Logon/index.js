@@ -4,7 +4,7 @@ import {FiLogIn} from 'react-icons/fi'
 import './styles.css'
 import logoIMG from '../../assets/logo.svg'
 import heroesIMG from '../../assets/heroes.png'
-import { ToastContainer } from 'react-toastify';
+import { toast,ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import api from '../../services/api'
@@ -26,6 +26,15 @@ export default function Logon(){
       console.log(res.data.name)
 
     } catch (error) {
+      toast.error(`Ong não cadastrada!`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       console.log('falha no login tente novamente');
     }
   }
