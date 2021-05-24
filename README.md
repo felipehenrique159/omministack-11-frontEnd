@@ -1,4 +1,4 @@
-## Aplicação Be the hero React JS / FRONT-END
+## Aplicação Be the hero React JS
 
 <img src="https://user-images.githubusercontent.com/43323183/91913134-432f3d00-ec8b-11ea-82d1-5936fc0a3e1d.png">
 
